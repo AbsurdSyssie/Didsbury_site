@@ -22,6 +22,12 @@ Sources and conflicts are recorded in [inventory](CONTENT-INVENTORY.md) and [que
 
 Playwright exercised all 19 local pages at 390×844, 768×1024 and 1440×900: 57 page/viewport combinations, no horizontal overflow, broken image assets, missing urgent-help control, extra banners or forms/frames. Homepage, phone appointments and desktop contact screenshots inspected. Keyboard skip link focused and moved to `maincontent`; mobile More navigation exposed Services. Reduced motion and 200% root-text enlargement produced no homepage overflow. Final homepage uses the full NHS.UK content grid, while ordinary reading pages retain the narrower text column. Screenshots/reports are local in `/tmp/opencode/didsbury-source`, not committed. This is not a full assistive-technology or accessibility certification.
 
-## Remaining limits
+## External deployment checks
+
+Manual upload of implementation `c22f71d6f9527da3846cca595559f75c508ff4ed` to the new `didsbury-site` project succeeded. Main hostname <https://didsbury-site.pages.dev/> serves all 19 tested HTML pages byte-for-byte with noindex. Robots and checked CSS/JS match; true missing paths return 404/noindex and the tested error bytes. The live home, appointments, opening times, contact and about pages passed phone/tablet/desktop browser layout/safety checks. Curl and browser were used after Python urllib encountered 403. Immutable `96deb09d.didsbury-site.pages.dev` had a TLS handshake failure, so no successful immutable-host audit is claimed.
+
+The custom hostname is attached but pending “CNAME record not set”, externally HTTP 525. Exact-host DNS read was denied 403. No DNS backup/write was possible or attempted after denial. Exact dashboard completion steps are in `DEMO.md`. Do not claim the custom hostname is live. The only push target was the new public personal GitHub project; no upstream, HHC or Barlow changes. Inherited GitHub CI/publishing logs confirm both stopped at missing real review date and earnings year; GitHub Pages was not enabled.
+
+## Outstanding approval and operational limits
 
 No practice approval, earnings year, current full privacy notice, legal sign-off, accessibility certification or official production ownership is claimed. Locum cohort representation needs explicit approval. No complete reproduction of the old website or proof that all original URLs were found is claimed. Some archive-body requests failed and indexed text is labelled separately. HTTPS hosting and live body checks are operational evidence, not clinical content approval.
