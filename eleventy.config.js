@@ -5,7 +5,12 @@ import path from "node:path";
 import fs from "node:fs";
 import nunjucks from "nunjucks";
 import { HtmlBasePlugin } from "@11ty/eleventy";
-import { loadPractice, formatProblems } from "./lib/practice.js";
+import {
+  loadPractice,
+  formatProblems,
+  validatePractice,
+  normalisePractice,
+} from "./lib/practice.js";
 import * as filters from "./lib/filters.js";
 
 const NHSUK_DIST = "node_modules/nhsuk-frontend/dist";
@@ -17,11 +22,23 @@ export default function (eleventyConfig) {
 export function configureSite(eleventyConfig, { draftPreview = false } = {}) {
   const practiceDir = path.resolve(process.env.PRACTICE_DIR ?? "practice");
   const result = loadPractice(practiceDir);
+  const suppressEarnings =
+    draftPreview &&
+    (result.data.gp_earnings?.financial_year == null ||
+      String(result.data.gp_earnings.financial_year).trim() === "");
+  if (suppressEarnings) {
+    // H7: an unknown-year declaration is not preview content. Omit the whole
+    // block before validation/normalisation, never manufacture missing counts.
+    const previewData = { ...result.data };
+    delete previewData.gp_earnings;
+    Object.assign(result, validatePractice(previewData, { pages: result.pages }));
+    result.practice = normalisePractice(previewData);
+  }
 
   const deferred = draftPreview
     ? result.errors.filter((error) => {
         const fields = {
-          "gp_earnings.financial_year": result.data.gp_earnings?.financial_year,
+          ...(suppressEarnings ? { gp_earnings: undefined } : {}),
           "site.content_last_reviewed": result.data.site?.content_last_reviewed,
         };
         return (

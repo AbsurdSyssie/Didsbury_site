@@ -77,8 +77,6 @@ gp_earnings:
   mean_earnings: 70203
   full_time_gps: 2
   part_time_gps: 13
-  # No separate locum cohort is declared. Requires explicit practice approval.
-  locum_gps: 0
 cqc:
   location_id: 1-29701373279
   embed_html: ""

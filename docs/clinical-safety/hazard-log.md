@@ -23,7 +23,7 @@ Ratings use the DCB0129 risk matrix: severity (1 minor to 5 catastrophic) and li
 
 ### Unofficial personal demo controls, 30 October 2026
 
-This clone's preview is not an official practice launch or clinical sign-off. H2/H3/H7: the isolated preview config defers only absent content approval date and earnings financial year. Supplied invalid values, required phone/hours, untrusted embeds and all other validation failures still block it. Production validators and the normal build are not relaxed. Unknown-year earnings are not rendered. No review date is fabricated.
+This clone's preview is not an official practice launch or clinical sign-off. H2/H3/H7: the isolated preview config defers the absent content approval date. When the earnings year is absent, it removes the entire declaration from preview data, revalidates the remaining practice and defers only the resulting required earnings-block error. Unknown counts are never filled. With a supplied year, every earnings field must pass normal validation. Supplied invalid values outside the suppressed declaration, required phone/hours, untrusted embeds and all other validation failures still block preview. Production validators and the normal build are not relaxed. No review date is fabricated.
 
 H1/H5/H10: preview-only source-specific page overrides cannot replace the base layout or urgent-help partial. All pages keep the urgent-help control, exactly one compact unofficial banner and noindex. No local patient forms, external scripts, frames, analytics or archived code are copied. Verified source-authentic supplier links remain usable; they leave this demonstration for the real practice's service. No submission was made during verification.
 

@@ -8,6 +8,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { load, dump } from "js-yaml";
+import { configureSite } from "../eleventy.config.js";
 
 test("failed demo rebuild removes stale demo output but leaves production alone (H2,H7)", () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "demo-output-"));
@@ -55,6 +56,7 @@ test("demo defers only missing review facts, never invalid safety data (H1,H2,H3
   data.site.custom_domain = "fictional.example.com";
   delete data.site.content_last_reviewed;
   delete data.gp_earnings.financial_year;
+  delete data.gp_earnings.locum_gps;
   const save = () => fs.writeFileSync(file, dump(data));
   const run = (preview = true) =>
     spawnSync(
@@ -70,6 +72,29 @@ test("demo defers only missing review facts, never invalid safety data (H1,H2,H3
     save();
     let result = run();
     assert.equal(result.status, 0, result.stderr);
+    const previousDir = process.env.PRACTICE_DIR;
+    try {
+      process.env.PRACTICE_DIR = practice;
+      const noop = () => {};
+      configureSite(
+        {
+          addGlobalData: (key, value) => {
+            if (key === "practice") assert.equal(Object.hasOwn(value, "gp_earnings"), false);
+          },
+          addTemplate: noop,
+          setLibrary: noop,
+          addFilter: noop,
+          addPassthroughCopy: noop,
+          addWatchTarget: noop,
+          addPlugin: noop,
+          ignores: { add: noop },
+        },
+        { draftPreview: true },
+      );
+    } finally {
+      if (previousDir === undefined) delete process.env.PRACTICE_DIR;
+      else process.env.PRACTICE_DIR = previousDir;
+    }
     const files = fs.readdirSync(path.join(tmp, "output"), { recursive: true });
     for (const f of files.filter((f) => f.endsWith(".html"))) {
       const html = fs.readFileSync(path.join(tmp, "output", f), "utf8");
@@ -90,6 +115,15 @@ test("demo defers only missing review facts, never invalid safety data (H1,H2,H3
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /site.content_last_reviewed/);
     assert.match(result.stderr, /gp_earnings.financial_year/);
+    assert.match(result.stderr, /gp_earnings.locum_gps/);
+    assert.equal(load(fs.readFileSync(file, "utf8")).gp_earnings.locum_gps, undefined);
+    // H7: supplying the year must not silently fill an unknown cohort with zero.
+    data.gp_earnings.financial_year = "2025/26";
+    save();
+    result = run();
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /gp_earnings.locum_gps/);
+    delete data.gp_earnings.financial_year;
     for (const [change, restore] of [
       [
         () => {

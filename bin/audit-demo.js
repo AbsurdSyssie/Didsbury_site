@@ -13,6 +13,7 @@ assert.equal(data.practice.ods_code, "P84678");
 assert.equal(data.contact.phone, "0161 445 1957");
 assert.equal(data.site.content_last_reviewed, "");
 assert.equal(data.gp_earnings.financial_year, "");
+assert.equal(Object.hasOwn(data.gp_earnings, "locum_gps"), false);
 assert.equal(data.online_services.online_consultation.url, evidence.url);
 const files = fs.readdirSync(root, { recursive: true }).filter((f) => f.endsWith(".html"));
 assert.equal(files.length, 19);
