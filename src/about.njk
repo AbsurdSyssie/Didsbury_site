@@ -26,7 +26,7 @@ title: About us
 {% if practice.ppg.contact %}<p>{{ practice.ppg.contact }}</p>{% endif %}
 {% endif %}
 
-{% if practice.gp_earnings %}
+{% if practice.gp_earnings and (not draftPreview or (practice.gp_earnings.financial_year | default("", true) | trim)) %}
 {% set e = practice.gp_earnings %}
 <h2>GP earnings</h2>
 <p>All GP practices are required to declare the mean earnings (average pay) for GPs working to deliver NHS services to patients at each practice.</p>

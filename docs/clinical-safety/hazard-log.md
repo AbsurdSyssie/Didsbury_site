@@ -21,6 +21,18 @@ Ratings use the DCB0129 risk matrix: severity (1 minor to 5 catastrophic) and li
 
 ## Open actions
 
+### Unofficial personal demo controls, 30 October 2026
+
+This clone's preview is not an official practice launch or clinical sign-off. H2/H3/H7: the isolated preview config defers only absent content approval date and earnings financial year. Supplied invalid values, required phone/hours, untrusted embeds and all other validation failures still block it. Production validators and the normal build are not relaxed. Unknown-year earnings are not rendered. No review date is fabricated.
+
+H1/H5/H10: preview-only source-specific page overrides cannot replace the base layout or urgent-help partial. All pages keep the urgent-help control, exactly one compact unofficial banner and noindex. No local patient forms, external scripts, frames, analytics or archived code are copied. Verified source-authentic supplier links remain usable; they leave this demonstration for the real practice's service. No submission was made during verification.
+
+H2/H7: NHS P84678 and CQC corroborate the relocation to 1 The Avenue, M20 2ER. Do not reuse the archived old-location CQC rating or stale Wilmslow Road map. The live Accurx landing page identifies the practice and new address and provides request windows. The source results page specifically says the practice does not routinely telephone results. These facts are protected by `audit:demo`. Outstanding source conflicts and approval requirements are nonrendered migration questions.
+
+H6/H8: only the new personal Pages project may be deployed. No GitHub Pages enablement or unrelated DNS changes. `no-transform` headers discourage host HTML rewriting, with live byte comparison required. Noindex is advisory, not access control. Phone/tablet/desktop inspection and HTML validation are checks, not a full accessibility certification.
+
+Verification: `tests/preview.test.js`, fictional production fixture tests, all-page demo audit and live deployment checks documented in `practice/MIGRATION-VERIFICATION.md`.
+
 - Re-review ratings when the template changes in a way that affects a hazard or control.
 - Add automated accessibility testing (for example axe) to CI.
 - Consider a Content Security Policy generated from the trusted embed domains.

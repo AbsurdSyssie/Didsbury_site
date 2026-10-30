@@ -1,5 +1,7 @@
 # Open GP Practice Website
 
+This copy is an **unofficial personal Didsbury demonstration**, not a practice-approved website. See [DEMO.md](DEMO.md) for safe preview builds, source provenance and deployment scope. Ordinary production checks intentionally remain blocked on missing genuine approval facts.
+
 A free, open source website template that lets a GP practice put a safe, NHS-style website online in an afternoon, with an AI assistant doing the technical work.
 
 [![CI](https://github.com/pacharanero/open-gp-practice-website/actions/workflows/ci.yml/badge.svg)](https://github.com/pacharanero/open-gp-practice-website/actions/workflows/ci.yml)

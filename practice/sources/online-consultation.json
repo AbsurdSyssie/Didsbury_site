@@ -1,0 +1,11 @@
+{
+  "url": "https://florey.accurx.com/p/P84678",
+  "prescriptionUrl": "https://florey.accurx.com/p/P84678/patient-form",
+  "source": "https://www.didsburymedicalcentre.co.uk/surgery-information/contact-us/",
+  "capture": "20260713205604",
+  "prescriptionSource": "https://www.didsburymedicalcentre.co.uk/prescriptions/how-to-request-a-repeat-prescription/",
+  "prescriptionCapture": "20260713221922",
+  "checked": "2026-10-30",
+  "destinationIdentity": "Didsbury Medical Centre, 1 The Avenue, Manchester, M20 2ER",
+  "method": "Read-only GET. No login, patient details, consent interaction or submission. Live supplier text corroborates 8am–9:30am urgent requests and routine from 9:30am; routine may take 24 hours to review. Admin normally within 3 days."
+}
